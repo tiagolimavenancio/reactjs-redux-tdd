@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import checkPropTypes from 'check-prop-types';
 import Headline from './index';
 
-
 const setUp = (props={}) => {
     const component = shallow(<Headline {...props} />);
     return component;
