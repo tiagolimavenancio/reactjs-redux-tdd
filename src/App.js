@@ -27,11 +27,11 @@ function App(props) {
   const { posts } = props;
 
   function fetch() {
-
+    props.fetchPosts()
   }
 
   return (
-    <div className="App">
+    <div data-test='appComponent' className="App">
       <Header />
       <section className='main'>
         <Headline header='Posts' desc='Click the button to render posts!' tempArr={tempArr} />
