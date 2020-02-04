@@ -21,6 +21,9 @@ const setUp = (initialState = {}) => {
 describe('App Component', () => {
 
     let wrapper ;
+    const useStateSpy = jest.spyOn(React, 'useState');
+    useStateSpy.mockImplementation((init) => [init, setState]);
+
     beforeEach(() => {
         const initialState = {
             posts: [{
@@ -35,11 +38,23 @@ describe('App Component', () => {
             }]
         }
         wrapper = setUp(initialState);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
     })
 
     it('should render without errors', () => {
         const component = wrapper.find(`[data-test='appComponent']`);
         expect(component.length).toBe(1);
-    })
+    });
+
+    it('should updateState method as expected', () => {
+        
+    });
+
+    it('should returnsAValue method as expected', () => {
+        
+    });
 
 })

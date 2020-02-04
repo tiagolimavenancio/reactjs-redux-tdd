@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 import { fetchPosts } from './store/ducks/Posts/actions';
@@ -19,6 +19,8 @@ const tempArr = [{
 
 function App(props) {
 
+  const [hideBtn, setHideBtn] = useState(false);
+
   const configButton = {
     buttonText: 'Get posts',
     emitEvent: fetch
@@ -28,6 +30,15 @@ function App(props) {
 
   function fetch() {
     props.fetchPosts()
+    updateState();
+  }
+
+  function updateState() {
+    setHideBtn(!hideBtn);
+  }
+
+  function returnsAValue(number) {
+    return number + 1;
   }
 
   return (
@@ -35,7 +46,10 @@ function App(props) {
       <Header />
       <section className='main'>
         <Headline header='Posts' desc='Click the button to render posts!' tempArr={tempArr} />
-        <SharedButton {...configButton} />
+        {!hideBtn && 
+          <SharedButton {...configButton} />
+        }
+
         {posts.length > 0 &&
             <div>
               {posts.map((post, index) => {
